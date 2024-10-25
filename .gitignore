@@ -1,0 +1,119 @@
+# This .gitignore file should be placed at the root of your Unity project directory
+
+# Ignore all hidden files and directories
+.*
+!.gitignore
+
+# Ignore system-specific files
+[Dd]esktop.ini
+[Tt]humbs.db
+.DS_Store
+
+# Ignore Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+
+# Ignore Unity auto-generated files
+sysinfo.txt
+*.stackdump
+
+# Ignore crash reports
+crash-reports/
+
+# Ignore asset meta data
+*.pidb
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.ilk
+*.map
+*.obj
+*.pch
+*.pdb
+*.rsp
+*.sbr
+*.tlog
+*.log
+*.vspscc
+*.vssscc
+*.unityproj
+*.sln
+*.userprefs
+*.csproj
+*.tmp
+
+# Ignore any auto-generated files by Unity
+/Assets/AssetStoreTools*
+/Assets/Standard Assets/ExampleProject*
+
+# Ignore Unity auto-generated folders
+.ionide/
+
+# Ignore build directories
+/Build/
+/[Oo]bj/
+[Bb]uilds/
+/[Bb]in/
+/[Oo]ut/
+
+# Ignore user-specific files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Ignore the main Unity configuration file
+ProjectSettings/EditorSettings.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/TimeManager.asset
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/QualitySettings.asset
+ProjectSettings/Physics2DSettings.asset
+ProjectSettings/PhysicsSettings.asset
+ProjectSettings/InputManager.asset
+ProjectSettings/PlayerSettings.asset
+ProjectSettings/AudioManager.asset
+ProjectSettings/DynamicsManager.asset
+ProjectSettings/ClusterInputManager.asset
+
+# Ignore auto-generated files
+/Assets/Plugins/GitHub/*
+/Assets/Plugins/GitHub/Editor/*
+
+# Ignore Unity Package Manager files
+Packages/manifest.json
+Packages/packages-lock.json
+
+# Ignore Unity Collaborate files
+UnityCollaborateAssetID
+
+# Ignore JetBrains Rider files
+.idea/
+*.sln.iml
+
+# Ignore Windows-specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Ignore macOS-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignore Linux-specific files
+.directory
