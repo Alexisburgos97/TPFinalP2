@@ -117,3 +117,6 @@ $RECYCLE.BIN/
 
 # Ignore Linux-specific files
 .directory
+
+# Ignore .meta files
+*.meta
