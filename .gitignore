@@ -93,10 +93,6 @@ ProjectSettings/ClusterInputManager.asset
 /Assets/Plugins/GitHub/*
 /Assets/Plugins/GitHub/Editor/*
 
-# Ignore Unity Package Manager files
-Packages/manifest.json
-Packages/packages-lock.json
-
 # Ignore Unity Collaborate files
 UnityCollaborateAssetID
 
