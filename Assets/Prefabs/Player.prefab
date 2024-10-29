@@ -57,6 +57,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 92a29c2e4c26bed428ca412d5603cc3b, type: 2}
     - target: {fileID: 5866666021909216657, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -75,13 +79,11 @@ PrefabInstance:
       addedObject: {fileID: 3561085440363509438}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 766509419080445758}
+      addedObject: {fileID: 2756842216993959480}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5327153600854224834}
   m_SourcePrefab: {fileID: 100100000, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
---- !u!95 &2017744556935530357 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
-  m_PrefabInstance: {fileID: 5578519930541603556}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4732029232338913205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
@@ -102,7 +104,7 @@ MonoBehaviour:
   AttackDamage: 10
   velocity: 4
   sensibilidadDelMouse: 1
-  animator: {fileID: 2017744556935530357}
+  animator: {fileID: 5327153600854224834}
   runningSpeedThreshold: 2.5
 --- !u!54 &2312720192039401313
 Rigidbody:
@@ -129,7 +131,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 48
   m_CollisionDetection: 0
 --- !u!114 &3561085440363509438
 MonoBehaviour:
@@ -147,8 +149,8 @@ MonoBehaviour:
   HealthMax: 100
   BarHealth: {fileID: 0}
   TextHealth: {fileID: 0}
---- !u!64 &766509419080445758
-MeshCollider:
+--- !u!65 &2756842216993959480
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -165,7 +167,36 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6496925, y: 1.751066, z: 0.4337811}
+  m_Center: {x: -0.00613898, y: 0.8659728, z: -0.023247}
+--- !u!95 &5327153600854224834
+Animator:
   serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+  m_Controller: {fileID: 9100000, guid: 92a29c2e4c26bed428ca412d5603cc3b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+    'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+    'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+    'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'mixamo.com'\n\tFrom
+    animation clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'\n\tFrom animation
+    clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'\n\tFrom animation clip
+    'mixamo.com'\n\tFrom animation clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'"
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
