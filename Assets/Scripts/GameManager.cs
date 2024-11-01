@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour, IVolumeControl
     public static GameManager Instance => instance;
     private static GameManager instance;
 
-    [SerializeField] private float MasterVolume = 1.0f;
+    [SerializeField] private float MasterVolume = 0.3f;
 
     private void Awake()
     {
