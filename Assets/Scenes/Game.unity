@@ -703,9 +703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13946e2bc73b89347a2e37b842865d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  cameraPosition: {x: 0, y: 0, z: 0}
-  cameraFollowSpeed: 0
+  player: {fileID: 2195834133321351028}
+  cameraPosition: {x: 0, y: 2, z: -3}
+  cameraFollowSpeed: 5
 --- !u!1 &1432275597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1046,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
+--- !u!4 &2195834133321351028 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5395412612871822607, guid: ce0d086a2b061b6409ecbc69427be047, type: 3}
+  m_PrefabInstance: {fileID: 2195834133321351019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7523244117227615744
 PrefabInstance:
   m_ObjectHideFlags: 0
