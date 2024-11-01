@@ -70,42 +70,25 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8869008085367173522}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2312720192039401313}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3561085440363509438}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2756842216993959480}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5327153600854224834}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8186486649096014195}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5656632049336706042}
   m_SourcePrefab: {fileID: 100100000, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
 --- !u!1 &4732029232338913205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
   m_PrefabInstance: {fileID: 5578519930541603556}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8869008085367173522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4732029232338913205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bd2064bfd5a93d479dd2bc071e7d077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackDamage: 10
-  velocity: 4
-  sensibilidadDelMouse: 1
-  animator: {fileID: 5327153600854224834}
-  runningSpeedThreshold: 2.5
 --- !u!54 &2312720192039401313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,22 +116,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
---- !u!114 &3561085440363509438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4732029232338913205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b631145cb82ab141a1f427bfd265f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 100
-  HealthMax: 100
-  BarHealth: {fileID: 0}
-  TextHealth: {fileID: 0}
 --- !u!65 &2756842216993959480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -186,17 +153,41 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-    'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
-    'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
-    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
-    'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'mixamo.com'\n\tFrom
-    animation clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'\n\tFrom animation
-    clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'\n\tFrom animation clip
-    'mixamo.com'\n\tFrom animation clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8186486649096014195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7aebe7fedee50f438e0045ff8eeec19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackDamage: 10
+  velocity: 3
+  sensibilidadDelMouse: 2
+  animator: {fileID: 5327153600854224834}
+  runningSpeedThreshold: 2.5
+--- !u!114 &5656632049336706042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c55d1d27f3cde44091d91a9f6ee7faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  HealthMax: 100
+  BarHealth: {fileID: 0}
+  TextHealth: {fileID: 0}
