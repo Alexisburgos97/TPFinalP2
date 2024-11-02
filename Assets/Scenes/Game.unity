@@ -819,6 +819,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1990885069403302369, guid: ce0d086a2b061b6409ecbc69427be047, type: 3}
+      propertyPath: BarHealth
+      value: 
+      objectReference: {fileID: 1999913886}
+    - target: {fileID: 1990885069403302369, guid: ce0d086a2b061b6409ecbc69427be047, type: 3}
+      propertyPath: TextHealth
+      value: 
+      objectReference: {fileID: 1432275599}
     - target: {fileID: 3561085440363509438, guid: ce0d086a2b061b6409ecbc69427be047, type: 3}
       propertyPath: BarHealth
       value: 

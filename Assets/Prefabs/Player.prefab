@@ -79,10 +79,10 @@ PrefabInstance:
       addedObject: {fileID: 5327153600854224834}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8186486649096014195}
+      addedObject: {fileID: 2875678481786032903}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5656632049336706042}
+      addedObject: {fileID: 1990885069403302369}
   m_SourcePrefab: {fileID: 100100000, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
 --- !u!1 &4732029232338913205 stripped
 GameObject:
@@ -158,7 +158,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8186486649096014195
+--- !u!114 &2875678481786032903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,15 +167,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4732029232338913205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7aebe7fedee50f438e0045ff8eeec19, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bd2064bfd5a93d479dd2bc071e7d077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackDamage: 10
   velocity: 3
+  jumpForce: 0
   sensibilidadDelMouse: 2
   animator: {fileID: 5327153600854224834}
   runningSpeedThreshold: 2.5
---- !u!114 &5656632049336706042
+--- !u!114 &1990885069403302369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4732029232338913205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c55d1d27f3cde44091d91a9f6ee7faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b631145cb82ab141a1f427bfd265f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
