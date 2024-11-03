@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Potion and Pandora Box.meta
 guid: 2538ff647d11c9947a3f2cfeef57fbd2
+=======
+guid: 02d0879d910bcbb42a83cce889cf7737
+>>>>>>> develop:Assets/Character/Enemy/Zombie Kurni/clips.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

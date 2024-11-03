@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Animations/Key.meta
 guid: 090dcd8134da36d478cdc032ac7ed569
+=======
+guid: 69ceaf25a69be0d43bff3273e215f1cd
+>>>>>>> develop:Assets/Character/Enemy/Zombie Kurni.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

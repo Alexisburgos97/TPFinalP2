@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Character/Enemy/ZombieBoss/Clips/revisar.meta
 guid: 61b47e7fac70c894a9198ada5f586318
+=======
+guid: 9d2937217d5392f4f9343e17fb446527
+>>>>>>> develop:Assets/Character/Enemy/Zombie Kurni/clips/revisar.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
