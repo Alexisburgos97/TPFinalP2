@@ -193,6 +193,7 @@ crashlytics-build.properties
 
 # Archivos de disposición de ventanas
 UserSettings
+UserSettings/
 
 Build/
 Builds/
