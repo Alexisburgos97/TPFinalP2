@@ -4,35 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CodHealth : MonoBehaviour
+public class BarHealth : MonoBehaviour
 {
-
     public float Health = 100;
     public float HealthMax = 100;
 
     [Header("Interfaz")] 
-    public Image BarHealth;
+    public Image ImageBarHealth;
     public Text TextHealth;
-
-    void Update()
-    {
-        UpdateInterfaz();
-    }
 
     public void TakesDamage(float damage)
     {
         Health -= damage;
+        
         if (Health <= 0)
         {
             Health = 0;
-            Die();
+            //Die();
         }
+
+        UpdateInterfaz();
     }
 
     public bool recibeCure(float cure)
     {
-
-        if (Health == 100f)
+        if (Health == HealthMax)
         {
             return false;
         }
@@ -44,12 +40,13 @@ public class CodHealth : MonoBehaviour
             Health = HealthMax;
         }
 
+        UpdateInterfaz();
         return true;
     }
 
     public void UpdateInterfaz()
     {
-        BarHealth.fillAmount = Health / HealthMax;
+        ImageBarHealth.fillAmount = Health / HealthMax;
         TextHealth.text = "+ " + Health.ToString("f0");
     }
     
@@ -57,5 +54,4 @@ public class CodHealth : MonoBehaviour
     {
         SceneManager.LoadScene("GameOver");
     }
-    
 }

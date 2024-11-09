@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] public float sensibilidadDelMouse;
     [SerializeField] private Animator animator;
-    [SerializeField] private float runningSpeedThreshold = 2.5f;
+    // [SerializeField] private float runningSpeedThreshold = 2.5f;
     private Rigidbody rb;
     
     /*public AudioSource audioSoundWalking;
