@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController singleton;
     
     public BarHealth barHealth;
+
+    public InventoryObject inventory;
     
     [SerializeField] private GatherInput gatherInput;
     
@@ -36,22 +38,12 @@ public class PlayerController : MonoBehaviour
         if (singleton == null)
         {
             singleton = this;
-            Debug.Log("PlayerController singleton asignado.");
         }
         else
         {
             Destroy(this.gameObject);
         }
     
-        if (barHealth != null)
-        {
-            Debug.Log("barHealth asignado correctamente.");
-        }
-        else
-        {
-            Debug.LogWarning("barHealth no está asignado en PlayerController.");
-        }
-
         cameraController = Camera.main.GetComponent<CameraController>();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
@@ -63,6 +55,7 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleJump();
         HandleAttack();
+        HandleCure();
     }
 
     private void HandleMovement()
@@ -136,22 +129,63 @@ public class PlayerController : MonoBehaviour
             
             if (enemy != null && enemy.estaVivo)
             {
-                
-                Debug.Log($"Enemigo: {enemy}");
-            
                 Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * attackRange, Color.red);
                 
-                Debug.Log($"Atacando a {enemy.gameObject.name}, Vida antes del ataque: {enemy.vida}");
                 enemy.RecibirDaño(damage);
-                Debug.Log($"Vida después del ataque: {enemy.vida}");
             }
         }
     }
+
+    private void HandleCure()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UsePotion();
+        }
+    }
+    
+    public void UsePotion()
+    {
+        if (barHealth.Health < 100 && inventory.HasItemOfType(ItemType.Potion))
+        {
+            const float potionHealthRestore = 10f;
+        
+            // Calculamos cuánto se puede restaurar sin exceder el límite de salud
+            float healthToRestore = Mathf.Min(potionHealthRestore, 100 - barHealth.Health);
+
+            barHealth.recibeCure(healthToRestore);
+
+            inventory.UsePotion();
+
+            if (!inventory.HasItemOfType(ItemType.Potion))
+            {
+                Debug.Log("Ya no hay más pociones.");
+            }
+        }
+    }
+
 
     private bool GroundCheck()
     {
         bool isGrounded = Physics.CheckSphere(transform.TransformPoint(groundCheckOffset), groundCheckRadius, groundLayer);
         
         return isGrounded;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        
+        var item = other.GetComponent<Item>();
+        
+        if (item)
+        {
+            inventory.AddItem(item.item, 1);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.Items.Clear();
     }
 }
