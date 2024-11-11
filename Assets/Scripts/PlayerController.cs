@@ -1,5 +1,7 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +35,14 @@ public class PlayerController : MonoBehaviour
     private float ySpeed;
     private bool isGrounded;
 
+    /*THIS IS SPARTA*/
+    ISoundController _SoundControl;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip AttkSound1;
+    [SerializeField] private AudioClip AttkSound2;
+    /*THIS IS SPARTA*/
+
     private void Awake()
     {
         if (singleton == null)
@@ -43,10 +53,12 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    
+        
+        _SoundControl = GetComponent<ISoundController>();
         cameraController = Camera.main.GetComponent<CameraController>();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        
         Application.targetFrameRate = 60;
     }
     
@@ -109,12 +121,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             animator.SetTrigger("Attack");
+            _SoundControl.PlaySound(AttkSound1);
             AttemptAttack(attackDamage);
         }
         
         if (Input.GetButtonDown("Fire2"))
         {
             animator.SetTrigger("Attack2");
+            _SoundControl.PlaySound(AttkSound2);
             AttemptAttack(5f);
         }
     }

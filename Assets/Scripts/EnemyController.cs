@@ -16,7 +16,6 @@ public enum Estado
 
 public class EnemyController : MonoBehaviour
 {
-    
     public Estado estado;
     public float distanciaSeguir;
     public float distanciaAtacar;
@@ -28,8 +27,13 @@ public class EnemyController : MonoBehaviour
     public float vida = 100f; 
     public bool estaVivo = true;
 
+    /*CONTROLES DE SONIDO Y CLIPS DE AUDIO*/
+    ISoundController _SoundControl;
+    [SerializeField] private AudioClip AttakSound;
+
     public void Awake()
     {
+        _SoundControl = GetComponent<ISoundController>();
         StartCoroutine(CalcularDistancia());
     }
 
@@ -37,16 +41,10 @@ public class EnemyController : MonoBehaviour
     {
         if (autoSeleccionarTarget)
         {
-            // target = GameObject.FindGameObjectWithTag("Player").transform;
             target = PlayerController.singleton.transform;
         }
         
         Application.targetFrameRate = 60;
-    }
-
-    private void Update()
-    {
-        
     }
 
     private void LateUpdate()
@@ -56,7 +54,6 @@ public class EnemyController : MonoBehaviour
 
     public void CheckEstado()
     {
-
         switch (estado)
         {
             case Estado.idle:
@@ -72,8 +69,7 @@ public class EnemyController : MonoBehaviour
             case Estado.muerto:
                 EstadoMuerto();
                 break;
-        }
-        
+        }  
     }
 
     public void CambiarEstado(Estado e)
@@ -90,7 +86,6 @@ public class EnemyController : MonoBehaviour
                 estaVivo = false;
                 break;
         }
-        
         estado = e;
     }
 
@@ -106,6 +101,7 @@ public class EnemyController : MonoBehaviour
     {
         if (distancia < distanciaAtacar)
         {
+            _SoundControl.PlaySound(AttakSound);
             CambiarEstado(Estado.atacando);
         }else if (distancia > distanciaEscapar)
         {
