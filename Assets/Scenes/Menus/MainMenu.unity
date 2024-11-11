@@ -565,7 +565,7 @@ MonoBehaviour:
   Music: {fileID: 8300000, guid: a0218f93d91b88c4981c44dc66e019fa, type: 3}
   ClickSound: {fileID: 8300000, guid: 903ad5ee82ca1074dbbcdc8513777f07, type: 3}
   MasterVolumeSlider: {fileID: 39616409}
-  FirstScene: Game
+  FirstScene: GameFinal
 --- !u!1 &357214286
 GameObject:
   m_ObjectHideFlags: 0

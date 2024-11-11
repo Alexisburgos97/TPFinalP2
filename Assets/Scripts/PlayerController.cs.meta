@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cd12d4d828b395e4eac926b707bfc554
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - barHealth: {instanceID: 0}
+  - inventory: {instanceID: 0}
+  - gatherInput: {instanceID: 0}
+  - AttkSound1: {fileID: 8300000, guid: 21dd5d5c845d10d4185e6bb9dec7acd4, type: 3}
+  - AttkSound2: {fileID: 8300000, guid: 49208f779a820a44a99cfc69b04b8888, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
