@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Analytics;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyZombie : EnemyController
@@ -48,13 +49,15 @@ public class EnemyZombie : EnemyController
     public override void EstadoMuerto()
     {
         base.EstadoMuerto();
-        
-        //animaciones.SetBool("DeathEnemy", true);
-        
+
+       
+       animaciones.SetTrigger("Death");
+
+
         // Desactiva el agente para que no se mueva después de morir
+
         agente.enabled = false;
-        
-        Destroy(gameObject, 2f); 
+        Destroy(gameObject, 3f); //2f
     }
 
     public void Atacar()
