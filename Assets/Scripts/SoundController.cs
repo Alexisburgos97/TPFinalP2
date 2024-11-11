@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundController : MonoBehaviour
+public class SoundController : MonoBehaviour, ISoundController
 {
     [SerializeField] private AudioSource audioSourceOnce;
     [SerializeField] private AudioSource audioSourceLoop;
@@ -11,11 +11,11 @@ public class SoundController : MonoBehaviour
     {
         if (audioSourceOnce != null)
         {
-            audioSourceOnce.volume = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
+            audioSourceOnce.volume = PlayerPrefs.GetFloat("MasterVolume", 0.3f);
         }
         if (audioSourceLoop != null)
         {
-            audioSourceLoop.volume = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
+            audioSourceLoop.volume = PlayerPrefs.GetFloat("MasterVolume", 0.3f);
         }
     }
 
