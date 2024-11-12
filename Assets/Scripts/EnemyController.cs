@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
     /*CONTROLES DE SONIDO Y CLIPS DE AUDIO*/
     ISoundController _SoundControl;
     [SerializeField] private AudioClip AttakSound;
+    
 
     public void Awake()
     {
