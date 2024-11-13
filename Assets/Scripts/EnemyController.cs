@@ -32,7 +32,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private AudioClip AttakSound;
     [SerializeField] private AudioClip DeathSound;
 
-
     public void Awake()
     {
         _SoundControl = GetComponent<ISoundController>();

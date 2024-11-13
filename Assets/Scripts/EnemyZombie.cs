@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Analytics;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyZombie : EnemyController
 {
     private NavMeshAgent agente;
     public Animator animaciones;
-    
+    ISoundController _SoundControl;
+    [SerializeField] private AudioClip DeathSound;
     public float daño = 5f;
 
     void Awake()
     {
         base.Awake();
         agente = GetComponent<NavMeshAgent>();
+        
     }
 
     public override void EstadoIdle()
@@ -48,7 +51,8 @@ public class EnemyZombie : EnemyController
     public override void EstadoMuerto()
     {
         base.EstadoMuerto();
-       animaciones.SetTrigger("Death");
+        animaciones.SetTrigger("Death");
+        _SoundControl.PlaySound(DeathSound);
 
         // Desactiva el agente para que no se mueva después de morir
         agente.enabled = false;
