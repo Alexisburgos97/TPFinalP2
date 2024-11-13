@@ -48,12 +48,9 @@ public class EnemyZombie : EnemyController
     public override void EstadoMuerto()
     {
         base.EstadoMuerto();
-
        animaciones.SetTrigger("Death");
-        _SoundControl.PlaySound(DeathSound);
 
         // Desactiva el agente para que no se mueva después de morir
-
         agente.enabled = false;
         Destroy(gameObject, 3f); //2f
     }

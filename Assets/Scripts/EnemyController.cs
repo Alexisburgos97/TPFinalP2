@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour
     /*CONTROLES DE SONIDO Y CLIPS DE AUDIO*/
     ISoundController _SoundControl;
     [SerializeField] private AudioClip AttakSound;
+    [SerializeField] private AudioClip DeathSound;
+
 
     public void Awake()
     {
@@ -119,6 +121,7 @@ public class EnemyController : MonoBehaviour
     
     public virtual void EstadoMuerto()
     {
+        _SoundControl.PlaySound(DeathSound);
         estaVivo = false;
         Debug.Log("El enemigo ha muerto");
     }

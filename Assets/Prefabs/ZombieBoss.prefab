@@ -141,6 +141,7 @@ MonoBehaviour:
   vida: 100
   estaVivo: 1
   AttakSound: {fileID: 8300000, guid: a0855af4490546e4aa697a3574de2861, type: 3}
+  DeathSound: {fileID: 8300000, guid: 3d29314b061f93b44941e021bf7d971b, type: 3}
   animaciones: {fileID: 8455363011375167171}
   "da\xF1o": 10
 --- !u!136 &8363995713310996294
