@@ -60,9 +60,9 @@ public class EnemyZombie : EnemyController
     {
         if (distancia <= distanciaAtacar) 
         {
-            if (PlayerController.singleton != null && PlayerController.singleton.barHealth != null)
+            if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
             {
-                PlayerController.singleton.barHealth.TakesDamage(daño);
+                PlayerController.PlayerSingleton.barHealth.TakesDamage(daño);
             }
             else
             {

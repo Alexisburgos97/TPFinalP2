@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
     {
         if (autoSeleccionarTarget)
         {
-            target = PlayerController.singleton.transform;
+            target = PlayerController.PlayerSingleton.transform;
         }
         
         Application.targetFrameRate = 60;
