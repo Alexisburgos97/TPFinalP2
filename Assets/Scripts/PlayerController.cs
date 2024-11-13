@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioClip AttkSound1;
     [SerializeField] private AudioClip AttkSound2;
+    [SerializeField] private AudioClip BottleSound;
+    [SerializeField] private AudioClip ItemSound;
     /*THIS IS SPARTA*/
 
     private void Awake()
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
             barHealth.recibeCure(healthToRestore);
 
             inventory.UsePotion();
+            _SoundControl.PlaySound(BottleSound); 
 
             if (!inventory.HasItemOfType(ItemType.Potion))
             {
@@ -194,6 +197,7 @@ public class PlayerController : MonoBehaviour
         if (item)
         {
             inventory.AddItem(item.item, 1);
+            _SoundControl.PlaySound(ItemSound);
             Destroy(other.gameObject);
         }
     }

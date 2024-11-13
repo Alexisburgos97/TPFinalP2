@@ -7,7 +7,16 @@ public class DoorController : MonoBehaviour
     [SerializeField] private string requiredKeyName2;  
     [SerializeField] private string animation1 = "Door_Hinge_Open";  
     [SerializeField] private string animation2 = "Door_Hinge_Open2"; 
-    [SerializeField] private float detectionRange = 2f; 
+    [SerializeField] private float detectionRange = 2f;
+    
+    [Header("Sounds")] 
+    ISoundController _SoundControl;
+    [SerializeField] private AudioClip DoorSound;
+
+    private void Awake()
+    {
+        _SoundControl = GetComponent<ISoundController>();
+    }
 
     private void Update()
     {
@@ -34,5 +43,6 @@ public class DoorController : MonoBehaviour
     private void OpenDoor(string animationName)
     {
         doorAnimator.SetTrigger(animationName);
+        _SoundControl.PlaySound(DoorSound);
     }
 }
