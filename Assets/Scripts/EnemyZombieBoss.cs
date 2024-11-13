@@ -48,13 +48,13 @@ public class EnemyZombieBoss : EnemyController
     public override void EstadoMuerto()
     {
         base.EstadoMuerto();
-        
+
         //animaciones.SetBool("DeathEnemyBoss", true);
-        
+        animaciones.SetTrigger("DeathEnemyBoss");
         // Desactiva el agente para que no se mueva después de morir
         agente.enabled = false;
         
-        Destroy(gameObject, 2f); 
+        Destroy(gameObject, 3f); 
     }
 
     public void Atacar()
