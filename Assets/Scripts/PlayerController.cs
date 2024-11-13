@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             {
                 Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * attackRange, Color.red);
 
-                enemy.RecibirDaño(damage);
+                enemy.TakesDamage(damage);
             }
         }
     }

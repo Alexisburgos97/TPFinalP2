@@ -14,7 +14,7 @@ public enum Estado
     muerto = 4
 }
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable
 {
     public Estado estado;
     public float distanciaSeguir;
@@ -152,7 +152,7 @@ public class EnemyController : MonoBehaviour
         }
     #endif
     
-    public void RecibirDaño(float daño)
+    public void TakesDamage(float daño)
     {
         vida -= daño;
 
