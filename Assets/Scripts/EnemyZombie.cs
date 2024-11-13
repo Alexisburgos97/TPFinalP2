@@ -9,13 +9,11 @@ public class EnemyZombie : EnemyController
 {
     private NavMeshAgent agente;
     public Animator animaciones;
-    public float daño = 5f;
 
     void Awake()
     {
         base.Awake();
         agente = GetComponent<NavMeshAgent>();
-        
     }
 
     public override void EstadoIdle()
@@ -62,7 +60,7 @@ public class EnemyZombie : EnemyController
         {
             if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
             {
-                PlayerController.PlayerSingleton.barHealth.TakesDamage(daño);
+                PlayerController.PlayerSingleton.barHealth.TakesDamage(damage);
             }
             else
             {

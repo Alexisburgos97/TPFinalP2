@@ -8,8 +8,6 @@ public class EnemyZombieBoss : EnemyController
 {
     private NavMeshAgent agente;
     public Animator animaciones;
-    
-    public float daño = 10f;
 
     void Awake()
     {
@@ -63,7 +61,7 @@ public class EnemyZombieBoss : EnemyController
         {
             if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
             {
-                PlayerController.PlayerSingleton.barHealth.TakesDamage(daño);
+                PlayerController.PlayerSingleton.barHealth.TakesDamage(damage);
             }
             else
             {
