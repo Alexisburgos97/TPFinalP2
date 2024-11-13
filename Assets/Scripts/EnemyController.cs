@@ -14,18 +14,20 @@ public enum Estado
     muerto = 4
 }
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable
 {
     public Estado estado;
     public float distanciaSeguir;
-    public float distanciaAtacar;
+    protected float distanciaAtacar;
     public float distanciaEscapar;
     public bool autoSeleccionarTarget = true;
     public Transform target;
-    public float distancia;
+    protected float distancia;
 
     public float vida = 100f; 
     public bool estaVivo = true;
+
+    protected float Damage = 10f;
 
     /*CONTROLES DE SONIDO Y CLIPS DE AUDIO*/
     ISoundController _SoundControl;
@@ -42,7 +44,7 @@ public class EnemyController : MonoBehaviour
     {
         if (autoSeleccionarTarget)
         {
-            target = PlayerController.singleton.transform;
+            target = PlayerController.PlayerSingleton.transform;
         }
         
         Application.targetFrameRate = 60;
@@ -152,7 +154,7 @@ public class EnemyController : MonoBehaviour
         }
     #endif
     
-    public void RecibirDaño(float daño)
+    public void TakesDamage(float daño)
     {
         vida -= daño;
 
@@ -163,6 +165,23 @@ public class EnemyController : MonoBehaviour
             vida = 0;
             CambiarEstado(Estado.muerto);
             EstadoMuerto();
+        }
+    }
+    public virtual void Attack()
+    {
+        if (distancia <= distanciaAtacar)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, distanciaAtacar);
+
+            foreach (Collider hitCollider in hitColliders)
+            {
+                IDamageable damageableEntity = hitCollider.GetComponent<IDamageable>();
+
+                if (damageableEntity != null)
+                {
+                    damageableEntity.TakesDamage(Damage);
+                }
+            }
         }
     }
 }

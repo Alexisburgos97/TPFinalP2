@@ -3,10 +3,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
 
-    public static PlayerController singleton;
+    public static PlayerController PlayerSingleton;
     
     public BarHealth barHealth;
 
@@ -28,14 +28,9 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Animator animator;
 
-    private Vector3 moveInput;
-    
-    private Quaternion targetRotation;
-    
-    private float ySpeed;
-    private bool isGrounded;
+    private PlayerMovement playerMovement;
 
-    /*THIS IS SPARTA*/
+    /*THIS IS SONIDO*/
     ISoundController _SoundControl;
 
     [Header("Sounds")]
@@ -43,13 +38,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip AttkSound2;
     [SerializeField] private AudioClip BottleSound;
     [SerializeField] private AudioClip ItemSound;
-    /*THIS IS SPARTA*/
+    /*THIS IS SONIDO*/
 
     private void Awake()
     {
-        if (singleton == null)
+        if (PlayerSingleton == null)
         {
-            singleton = this;
+            PlayerSingleton = this;
         }
         else
         {
@@ -57,64 +52,36 @@ public class PlayerController : MonoBehaviour
         }
         
         _SoundControl = GetComponent<ISoundController>();
-        cameraController = Camera.main.GetComponent<CameraController>();
         characterController = GetComponent<CharacterController>();
+        cameraController = Camera.main.GetComponent<CameraController>();
         animator = GetComponent<Animator>();
-        
+
+        playerMovement = new PlayerMovement(
+            characterController, cameraController, gatherInput, animator,
+            moveSpeed, rotationSpeed, jumpForce, groundCheckRadius, groundCheckOffset, groundLayer
+        );
+
         Application.targetFrameRate = 60;
     }
     
     void Update()
     {
-        HandleMovement();
-        HandleJump();
+        playerMovement.HandleMovement();
+        playerMovement.HandleJump();
         HandleAttack();
         HandleCure();
     }
 
-    private void HandleMovement()
+    /*RECIBIR DAÑO - 13-11-2024*/
+    public void TakesDamage(float damage)
     {
-        Vector2 direction = gatherInput.smoothedDirection;
-        moveInput = new Vector3(direction.x, 0, direction.y);
-        
-        float moveAmount = Mathf.Clamp01(Mathf.Abs(direction.x) + Mathf.Abs(direction.y));
-        
-        moveInput = new Vector3(gatherInput.direction.x, 0, gatherInput.direction.y);
-
-        var moveDir = cameraController.GetYRotation * moveInput;
-
-        if (GroundCheck())
+        if (barHealth != null)
         {
-            ySpeed = -1f;
+            barHealth.TakesDamage(damage);
         }
         else
         {
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-        }
-
-        var velocity = moveDir * moveSpeed;
-
-        velocity.y = ySpeed;
-        
-        characterController.Move(velocity * Time.deltaTime);
-
-        if (moveInput.sqrMagnitude > 0f)
-        {
-            targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-        
-        animator.SetFloat("WalkSpeed", moveAmount, 0.1f, Time.deltaTime);
-    }
-    
-    private void HandleJump()
-    {
-        isGrounded = GroundCheck();
-
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            ySpeed = jumpForce; 
-            animator.SetTrigger("Jump");
+            Debug.LogWarning("BarHealth no está asignado.");
         }
     }
 
@@ -147,7 +114,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * attackRange, Color.red);
                 
-                enemy.RecibirDaño(damage);
+                enemy.TakesDamage(damage);
             }
         }
     }
@@ -159,7 +126,6 @@ public class PlayerController : MonoBehaviour
             UsePotion();
         }
     }
-    
     public void UsePotion()
     {
         if (barHealth.Health < 100 && inventory.HasItemOfType(ItemType.Potion))
@@ -181,15 +147,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    private bool GroundCheck()
-    {
-        bool isGrounded = Physics.CheckSphere(transform.TransformPoint(groundCheckOffset), groundCheckRadius, groundLayer);
-        
-        return isGrounded;
-    }
-
-    public void OnTriggerEnter(Collider other)
+  public void OnTriggerEnter(Collider other)
     {
         
         var item = other.GetComponent<Item>();

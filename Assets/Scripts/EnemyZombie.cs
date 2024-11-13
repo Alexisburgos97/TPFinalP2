@@ -55,19 +55,4 @@ public class EnemyZombie : EnemyController
         agente.enabled = false;
         Destroy(gameObject, 3f); //2f
     }
-
-    public void Atacar()
-    {
-        if (distancia <= distanciaAtacar) 
-        {
-            if (PlayerController.singleton != null && PlayerController.singleton.barHealth != null)
-            {
-                PlayerController.singleton.barHealth.TakesDamage(daño);
-            }
-            else
-            {
-                Debug.LogWarning("PlayerController o barHealth no están asignados.");
-            }
-        }
-    }
 }
