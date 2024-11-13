@@ -9,8 +9,6 @@ public class EnemyZombie : EnemyController
 {
     private NavMeshAgent agente;
     public Animator animaciones;
-    ISoundController _SoundControl;
-    [SerializeField] private AudioClip DeathSound;
     public float daño = 5f;
 
     void Awake()
@@ -52,7 +50,6 @@ public class EnemyZombie : EnemyController
     {
         base.EstadoMuerto();
         animaciones.SetTrigger("Death");
-        _SoundControl.PlaySound(DeathSound);
 
         // Desactiva el agente para que no se mueva después de morir
         agente.enabled = false;
