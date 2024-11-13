@@ -410,6 +410,7 @@ MonoBehaviour:
   estaVivo: 1
   AttakSound: {fileID: 8300000, guid: 19bab6e2e1c8feb4d9a51bb16d6e30b4, type: 3}
   animaciones: {fileID: 5199508790367121715}
+  DeathSound: {fileID: 8300000, guid: 3d29314b061f93b44941e021bf7d971b, type: 3}
   "da\xF1o": 5
 --- !u!136 &4292437450563190670
 CapsuleCollider:
