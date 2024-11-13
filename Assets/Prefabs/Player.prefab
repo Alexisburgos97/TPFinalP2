@@ -164,6 +164,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  attkSound1: {fileID: 8300000, guid: 21dd5d5c845d10d4185e6bb9dec7acd4, type: 3}
+  attkSound2: {fileID: 8300000, guid: 49208f779a820a44a99cfc69b04b8888, type: 3}
+  BottleSound: {fileID: 0}
+  ItemSound: {fileID: 0}
 --- !u!114 &1990885069403302369
 MonoBehaviour:
   m_ObjectHideFlags: 0

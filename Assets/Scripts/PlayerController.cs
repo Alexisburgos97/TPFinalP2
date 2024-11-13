@@ -28,14 +28,16 @@ public class PlayerController : MonoBehaviour, IDamageable
     private CharacterController characterController;
     private Animator animator;
 
+    //THIS IS SOLID
     private PlayerMovement playerMovement;
+    private PlayerAttackHandler playerAttackHandler;
 
     /*THIS IS SONIDO*/
     ISoundController _SoundControl;
 
     [Header("Sounds")]
-    [SerializeField] private AudioClip AttkSound1;
-    [SerializeField] private AudioClip AttkSound2;
+    [SerializeField] private AudioClip attkSound1;
+    [SerializeField] private AudioClip attkSound2;
     [SerializeField] private AudioClip BottleSound;
     [SerializeField] private AudioClip ItemSound;
     /*THIS IS SONIDO*/
@@ -61,6 +63,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             moveSpeed, rotationSpeed, jumpForce, groundCheckRadius, groundCheckOffset, groundLayer
         );
 
+        playerAttackHandler = new PlayerAttackHandler(animator, _SoundControl, attkSound1, attkSound2, attackDamage, attackRange, transform);
+
         Application.targetFrameRate = 60;
     }
 
@@ -68,7 +72,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         playerMovement.HandleMovement();
         playerMovement.HandleJump();
-        HandleAttack();
+        playerAttackHandler.HandleAttack();
         HandleCure();
     }
 
@@ -82,40 +86,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         else
         {
             Debug.LogWarning("BarHealth no está asignado.");
-        }
-    }
-
-    private void HandleAttack()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            animator.SetTrigger("Attack");
-            _SoundControl.PlaySound(AttkSound1);
-            AttemptAttack(attackDamage);
-        }
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            animator.SetTrigger("Attack2");
-            _SoundControl.PlaySound(AttkSound2);
-            AttemptAttack(5f);
-        }
-    }
-
-    private void AttemptAttack(float damage)
-    {
-
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
-        foreach (Collider hitCollider in hitColliders)
-        {
-            EnemyController enemy = hitCollider.GetComponent<EnemyController>();
-
-            if (enemy != null && enemy.estaVivo)
-            {
-                Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * attackRange, Color.red);
-
-                enemy.TakesDamage(damage);
-            }
         }
     }
 
