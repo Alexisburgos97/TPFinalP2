@@ -21,20 +21,20 @@ public class DoorController : MonoBehaviour
     private void Update()
     {
         // Verificar si el jugador está dentro del rango de detección
-        if (Vector3.Distance(transform.position, PlayerController.singleton.transform.position) < detectionRange)
+        if (Vector3.Distance(transform.position, PlayerController.PlayerSingleton.transform.position) < detectionRange)
         {
             // Verificar si se presiona la tecla 'E' y si el jugador tiene la primera o la segunda llave
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (PlayerController.singleton.inventory.HasKey(requiredKeyName1))
+                if (PlayerController.PlayerSingleton.inventory.HasKey(requiredKeyName1))
                 {
                     OpenDoor(animation1); 
-                    PlayerController.singleton.inventory.UseKey(requiredKeyName1);
+                    PlayerController.PlayerSingleton.inventory.UseKey(requiredKeyName1);
                 }
-                else if (PlayerController.singleton.inventory.HasKey(requiredKeyName2))
+                else if (PlayerController.PlayerSingleton.inventory.HasKey(requiredKeyName2))
                 {
                     OpenDoor(animation2);
-                    PlayerController.singleton.inventory.UseKey(requiredKeyName2);
+                    PlayerController.PlayerSingleton.inventory.UseKey(requiredKeyName2);
                 }
             }
         }
@@ -42,7 +42,7 @@ public class DoorController : MonoBehaviour
 
     private void OpenDoor(string animationName)
     {
-        doorAnimator.SetTrigger(animationName);
         _SoundControl.PlaySound(DoorSound);
+        doorAnimator.SetTrigger(animationName);
     }
 }

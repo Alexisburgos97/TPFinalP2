@@ -8,8 +8,6 @@ public class EnemyZombieBoss : EnemyController
 {
     private NavMeshAgent agente;
     public Animator animaciones;
-    
-    public float daño = 10f;
 
     void Awake()
     {
@@ -55,20 +53,5 @@ public class EnemyZombieBoss : EnemyController
         agente.enabled = false;
         
         Destroy(gameObject, 3f); 
-    }
-
-    public void Atacar()
-    {
-        if (distancia <= distanciaAtacar) 
-        {
-            if (PlayerController.singleton != null && PlayerController.singleton.barHealth != null)
-            {
-                PlayerController.singleton.barHealth.TakesDamage(daño);
-            }
-            else
-            {
-                Debug.LogWarning("PlayerController o barHealth no están asignados.");
-            }
-        }
     }
 }
