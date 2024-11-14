@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 100
-  damage: 10
+  damage: 25
   estaVivo: 1
   estado: 0
   target: {fileID: 0}

@@ -42,7 +42,7 @@ public class DoorController : MonoBehaviour
 
     private void OpenDoor(string animationName)
     {
-        doorAnimator.SetTrigger(animationName);
         _SoundControl.PlaySound(DoorSound);
+        doorAnimator.SetTrigger(animationName);
     }
 }

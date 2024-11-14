@@ -168,4 +168,19 @@ public class EnemyController : MonoBehaviour, IDamageable
             EstadoMuerto();
         }
     }
+
+    public void Attacking()
+    {
+        if (distancia <= distanciaAtacar)
+        {
+            if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
+            {
+                PlayerController.PlayerSingleton.barHealth.TakesDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("PlayerController o barHealth no están asignados.");
+            }
+        }
+    }
 }
