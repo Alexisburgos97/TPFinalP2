@@ -14,18 +14,21 @@ public enum Estado
     muerto = 4
 }
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable
 {
+    /*STANDAR STATS*/
+    public float vida = 100f;
+    [SerializeField] protected float damage = 10f;
+    public bool estaVivo = true;
     public Estado estado;
+
+    /*ATTACK SECTION*/
+    public Transform target;
+    public float distancia;
     public float distanciaSeguir;
     public float distanciaAtacar;
     public float distanciaEscapar;
     public bool autoSeleccionarTarget = true;
-    public Transform target;
-    public float distancia;
-
-    public float vida = 100f; 
-    public bool estaVivo = true;
 
     /*CONTROLES DE SONIDO Y CLIPS DE AUDIO*/
     ISoundController _SoundControl;
@@ -42,7 +45,7 @@ public class EnemyController : MonoBehaviour
     {
         if (autoSeleccionarTarget)
         {
-            target = PlayerController.singleton.transform;
+            target = PlayerController.PlayerSingleton.transform;
         }
         
         Application.targetFrameRate = 60;
@@ -152,7 +155,7 @@ public class EnemyController : MonoBehaviour
         }
     #endif
     
-    public void RecibirDaño(float daño)
+    public void TakesDamage(float daño)
     {
         vida -= daño;
 
@@ -163,6 +166,21 @@ public class EnemyController : MonoBehaviour
             vida = 0;
             CambiarEstado(Estado.muerto);
             EstadoMuerto();
+        }
+    }
+
+    public void Attacking()
+    {
+        if (distancia <= distanciaAtacar)
+        {
+            if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
+            {
+                PlayerController.PlayerSingleton.barHealth.TakesDamage(damage);
+            }
+            else
+            {
+                Debug.LogWarning("PlayerController o barHealth no están asignados.");
+            }
         }
     }
 }

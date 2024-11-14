@@ -131,19 +131,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f51599dffdbd94daf1738c38652bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 100
+  damage: 25
+  estaVivo: 1
   estado: 0
+  target: {fileID: 0}
+  distancia: 0
   distanciaSeguir: 4
   distanciaAtacar: 1.5
   distanciaEscapar: 5
   autoSeleccionarTarget: 1
-  target: {fileID: 0}
-  distancia: 0
-  vida: 100
-  estaVivo: 1
   AttakSound: {fileID: 8300000, guid: a0855af4490546e4aa697a3574de2861, type: 3}
   DeathSound: {fileID: 8300000, guid: 3d29314b061f93b44941e021bf7d971b, type: 3}
   animaciones: {fileID: 8455363011375167171}
-  "da\xF1o": 10
 --- !u!136 &8363995713310996294
 CapsuleCollider:
   m_ObjectHideFlags: 0
