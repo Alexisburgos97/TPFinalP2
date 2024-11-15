@@ -123,7 +123,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     
     public virtual void EstadoMuerto()
     {
-        _SoundControl.PlaySound(DeathSound);
         estaVivo = false;
         Debug.Log("El enemigo ha muerto");
     }
@@ -165,6 +164,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             vida = 0;
             CambiarEstado(Estado.muerto);
+            _SoundControl.PlaySound(DeathSound);
             EstadoMuerto();
         }
     }

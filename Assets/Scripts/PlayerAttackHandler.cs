@@ -12,46 +12,54 @@ public class PlayerAttackHandler : MonoBehaviour
     private AudioClip attkSound1;
     private AudioClip attkSound2;
 
-    //ATTACK STATISTICS
+    //ATTACK STATS
     private float attackDamage = 15f;
     private float attackRange = 1.6f;
+    private float strongAttackRange = 2.1f;
+    private float strongAttackDamage = 30f;
 
     //PLAYER POSITION
     private Transform playerTransform;
 
     // Start is called before the first frame update
-    public PlayerAttackHandler(Animator animator, ISoundController soundController, AudioClip attkSound1, AudioClip attkSound2, float attackDamage, float attackRange, Transform playerTransform)
+    public PlayerAttackHandler(Animator animator, ISoundController soundController, AudioClip attkSound1, AudioClip attkSound2, 
+                               float attackDamage, float attackRange, float strongAttackRange, float strongAttackDamage, Transform playerTransform)
     {
         this.animator = animator;
         this._SoundControl = soundController;
         this.attkSound1 = attkSound1;
         this.attkSound2 = attkSound2;
-        this.attackDamage = attackDamage;
         this.attackRange = attackRange;
+        this.attackDamage = attackDamage;
+        this.strongAttackRange = strongAttackRange;
+        this.strongAttackDamage = strongAttackDamage;
         this.playerTransform = playerTransform;
     }
 
     public void HandleAttack()
     {
+
+        if (IsAttacking()) return;
+
         if (Input.GetButtonDown("Fire1"))
         {
             animator.SetTrigger("Attack");
             _SoundControl.PlaySound(attkSound1);
-            AttemptAttack(attackDamage);
+            AttemptAttack(attackDamage, attackRange);
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
             animator.SetTrigger("Attack2");
             _SoundControl.PlaySound(attkSound2);
-            AttemptAttack(5f);
+            AttemptAttack(strongAttackDamage, strongAttackRange);
         }
     }
 
-    public void AttemptAttack(float damage)
+    public void AttemptAttack(float damage, float range)
     {
 
-        Collider[] hitColliders = Physics.OverlapSphere(playerTransform.position, attackRange);
+        Collider[] hitColliders = Physics.OverlapSphere(playerTransform.position, range);
         foreach (Collider hitCollider in hitColliders)
         {
             EnemyController enemy = hitCollider.GetComponent<EnemyController>();
@@ -63,5 +71,12 @@ public class PlayerAttackHandler : MonoBehaviour
                 enemy.TakesDamage(damage);
             }
         }
+    }
+
+    private bool IsAttacking()
+    {
+        AnimatorStateInfo currentState = animator.GetCurrentAnimatorStateInfo(0);
+
+        return currentState.IsName("Attack") || currentState.IsName("Attack2");
     }
 }

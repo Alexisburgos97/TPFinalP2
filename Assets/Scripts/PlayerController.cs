@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField] private GatherInput gatherInput;
 
+    [Header("Player Stats")]
     [SerializeField] private float moveSpeed = 5f, rotationSpeed = 500;
     [SerializeField] private float jumpForce = 4f;
     [SerializeField] private float attackRange = 1.6f;
     [SerializeField] private float attackDamage = 15f;
+    [SerializeField] private float strongAttackRange = 2.1f;
+    [SerializeField] private float strongAttackDamage = 30f;
 
     [Header("Ground Check")]
     [SerializeField] private float groundCheckRadius = 0.2f;
@@ -63,7 +66,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             moveSpeed, rotationSpeed, jumpForce, groundCheckRadius, groundCheckOffset, groundLayer
         );
 
-        playerAttackHandler = new PlayerAttackHandler(animator, _SoundControl, attkSound1, attkSound2, attackDamage, attackRange, transform);
+        playerAttackHandler = new PlayerAttackHandler(animator, _SoundControl, attkSound1, attkSound2, attackDamage, 
+                                                        attackRange, strongAttackRange, strongAttackDamage, transform);
 
         Application.targetFrameRate = 60;
     }
