@@ -51,6 +51,6 @@ public class EnemyZombie : EnemyController
 
         // Desactiva el agente para que no se mueva después de morir
         agente.enabled = false;
-        Destroy(gameObject, 3f); //2f
+        Destroy(gameObject, 5f); //3f  15-11-2024
     }
 }

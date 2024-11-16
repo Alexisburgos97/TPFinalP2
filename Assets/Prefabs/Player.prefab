@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.92
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.025000095
+      value: 0.161
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.24
+      value: -2.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50,6 +50,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
@@ -152,13 +156,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barHealth: {fileID: 1990885069403302369}
-  inventory: {fileID: 0}
+  inventory: {fileID: 11400000, guid: 01264f516ed5ef2459c34ad0b60a8f26, type: 2}
   gatherInput: {fileID: 0}
   moveSpeed: 5
   rotationSpeed: 500
   jumpForce: 8
   attackRange: 2
   attackDamage: 20
+  strongAttackRange: 2.1
+  strongAttackDamage: 30
   groundCheckRadius: 0.2
   groundCheckOffset: {x: 0, y: 0.1, z: -0.04}
   groundLayer:
@@ -166,8 +172,8 @@ MonoBehaviour:
     m_Bits: 8
   attkSound1: {fileID: 8300000, guid: 21dd5d5c845d10d4185e6bb9dec7acd4, type: 3}
   attkSound2: {fileID: 8300000, guid: 49208f779a820a44a99cfc69b04b8888, type: 3}
-  BottleSound: {fileID: 0}
-  ItemSound: {fileID: 0}
+  BottleSound: {fileID: 8300000, guid: df2e6e82f7fff9d4facf5d94c677fca1, type: 3}
+  ItemSound: {fileID: 8300000, guid: 06865cbc465757b4fb9f34feba0a747a, type: 3}
 --- !u!114 &1990885069403302369
 MonoBehaviour:
   m_ObjectHideFlags: 0
