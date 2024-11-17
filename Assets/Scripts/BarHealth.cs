@@ -12,6 +12,8 @@ public class BarHealth : MonoBehaviour
     [Header("Interfaz")] 
     public Image ImageBarHealth;
     public Text TextHealth;
+    
+    public PlayerController playerController;
 
     public void TakesDamage(float damage)
     {
@@ -20,7 +22,7 @@ public class BarHealth : MonoBehaviour
         if (Health <= 0)
         {
             Health = 0;
-            //Die();
+            Die();
         }
 
         UpdateInterfaz();
@@ -52,6 +54,13 @@ public class BarHealth : MonoBehaviour
     
     private void Die()
     {
-        SceneManager.LoadScene("GameOver");
+        if (playerController != null)
+        {
+            playerController.PlayDeathAnimation();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerController no está asignado.");
+        }
     }
 }
