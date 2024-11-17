@@ -18,6 +18,7 @@ public class DisplayInventory : MonoBehaviour
 
     void Start()
     {
+        ClearDisplay();
         CreateDisplay();
     }
 
@@ -81,5 +82,14 @@ public class DisplayInventory : MonoBehaviour
     public Vector3 GetPosition(int i)
     {
         return new Vector3(X_START + (X_SPACE_BETWEEN_ITEMS * (i % NUMBER_OF_COLUMNS)), Y_START + ((-Y_SPACE_BETWEEN_ITEMS * (i / NUMBER_OF_COLUMNS))), 0f);
+    }
+    
+    public void ClearDisplay()
+    {
+        foreach (var item in itemsDisplayed)
+        {
+            Destroy(item.Value);
+        }
+        itemsDisplayed.Clear();
     }
 }

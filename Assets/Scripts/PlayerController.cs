@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -44,6 +45,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private AudioClip BottleSound;
     [SerializeField] private AudioClip ItemSound;
     /*THIS IS SONIDO*/
+    
+    public delegate void PlayerDeathHandler();
+    public static event PlayerDeathHandler OnPlayerDeath;
 
     private void Awake()
     {
@@ -76,7 +80,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         playerMovement.HandleMovement();
         playerMovement.HandleJump();
-        playerAttackHandler.HandleAttack();
+        HandleAttack();
         HandleCure();
     }
 
@@ -91,6 +95,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             Debug.LogWarning("BarHealth no está asignado.");
         }
+    }
+
+    public void HandleAttack()
+    {
+        playerAttackHandler.HandleAttack();
     }
 
     private void HandleCure()
@@ -137,5 +146,37 @@ public class PlayerController : MonoBehaviour, IDamageable
     private void OnApplicationQuit()
     {
         inventory.Items.Clear();
+    }
+    
+    public void PlayDeathAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetTrigger("Death"); 
+            DisableMovement();
+            
+            StartCoroutine(DestroyPlayerAfterDeath());
+            
+            // SceneManager.LoadScene("GameOver");
+        }
+    }
+    
+    IEnumerator DestroyPlayerAfterDeath()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        float deathAnimationDuration = stateInfo.length;
+
+        yield return new WaitForSeconds(deathAnimationDuration);
+
+        // Notifica a otros scripts
+        OnPlayerDeath?.Invoke();
+
+        Destroy(gameObject);
+    }
+    
+    public void DisableMovement()
+    {
+        moveSpeed = 0;               
+        jumpForce = 0;              
     }
 }
