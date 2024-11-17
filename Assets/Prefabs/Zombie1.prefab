@@ -406,7 +406,7 @@ MonoBehaviour:
   target: {fileID: 0}
   distancia: 0
   distanciaSeguir: 4
-  distanciaAtacar: 1.3
+  distanciaAtacar: 1.33
   distanciaEscapar: 5
   autoSeleccionarTarget: 1
   AttakSound: {fileID: 8300000, guid: 19bab6e2e1c8feb4d9a51bb16d6e30b4, type: 3}

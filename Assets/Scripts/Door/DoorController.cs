@@ -36,4 +36,19 @@ public class DoorController : MonoBehaviour
         doorAnimator.SetTrigger(animationName);
         _SoundControl.PlaySound(DoorSound);
     }
+    
+    private void OnEnable()
+    {
+        PlayerController.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.OnPlayerDeath -= HandlePlayerDeath;
+    }
+    
+    private void HandlePlayerDeath()
+    {
+        enabled = false; 
+    }
 }

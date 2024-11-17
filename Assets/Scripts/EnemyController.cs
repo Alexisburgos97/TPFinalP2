@@ -35,6 +35,24 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private AudioClip AttakSound;
     [SerializeField] private AudioClip DeathSound;
 
+    private bool isPlayerAlive = true;
+
+    private void OnEnable()
+    {
+        PlayerController.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.OnPlayerDeath -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        isPlayerAlive = false;
+        target = null; 
+    }
+
     public void Awake()
     {
         _SoundControl = GetComponent<ISoundController>();
@@ -45,15 +63,26 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         if (autoSeleccionarTarget)
         {
-            target = PlayerController.PlayerSingleton.transform;
+            target = PlayerController.PlayerSingleton?.transform;
         }
-        
+
         Application.targetFrameRate = 60;
+    }
+
+    private void Update()
+    {
+        if (!isPlayerAlive || target == null)
+        {
+            return;
+        }
     }
 
     private void LateUpdate()
     {
-        CheckEstado();
+        if (isPlayerAlive && target != null)
+        {
+            CheckEstado();
+        }
     }
 
     public void CheckEstado()
@@ -64,8 +93,11 @@ public class EnemyController : MonoBehaviour, IDamageable
                 EstadoIdle();
                 break;
             case Estado.seguir:
-                transform.LookAt(target, Vector3.up);
-                EstadoSeguir();
+                if (target != null)
+                {
+                    transform.LookAt(target, Vector3.up);
+                    EstadoSeguir();
+                }
                 break;
             case Estado.atacando:
                 EstadoAtacar();
@@ -73,7 +105,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             case Estado.muerto:
                 EstadoMuerto();
                 break;
-        }  
+        }
     }
 
     public void CambiarEstado(Estado e)
@@ -95,7 +127,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public virtual void EstadoIdle()
     {
-        if (distancia < distanciaSeguir)
+        if (distancia < distanciaSeguir && target != null)
         {
             CambiarEstado(Estado.seguir);
         }
@@ -103,16 +135,17 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public virtual void EstadoSeguir()
     {
-        if (distancia < distanciaAtacar)
+        if (distancia < distanciaAtacar && target != null)
         {
             _SoundControl.PlaySound(AttakSound);
             CambiarEstado(Estado.atacando);
-        }else if (distancia > distanciaEscapar)
+        }
+        else if (distancia > distanciaEscapar)
         {
             CambiarEstado(Estado.idle);
         }
     }
-    
+
     public virtual void EstadoAtacar()
     {
         if (distancia > distanciaAtacar + 0.4f)
@@ -120,7 +153,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             CambiarEstado(Estado.seguir);
         }
     }
-    
+
     public virtual void EstadoMuerto()
     {
         estaVivo = false;
@@ -141,25 +174,25 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
     #if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
-        {
-            Handles.color = Color.red;
-            Handles.DrawWireDisc(transform.position, Vector3.up,  distanciaAtacar);
-            
-            Handles.color = Color.yellow;
-            Handles.DrawWireDisc(transform.position, Vector3.up, distanciaSeguir);
-            
-            Handles.color = Color.green;
-            Handles.DrawWireDisc(transform.position, Vector3.up, distanciaEscapar);
-        }
+    private void OnDrawGizmosSelected()
+    {
+        Handles.color = Color.red;
+        Handles.DrawWireDisc(transform.position, Vector3.up, distanciaAtacar);
+
+        Handles.color = Color.yellow;
+        Handles.DrawWireDisc(transform.position, Vector3.up, distanciaSeguir);
+
+        Handles.color = Color.green;
+        Handles.DrawWireDisc(transform.position, Vector3.up, distanciaEscapar);
+    }
     #endif
-    
+
     public void TakesDamage(float daño)
     {
         vida -= daño;
 
         Debug.Log("vida: " + vida);
-        
+
         if (vida <= 0 && estaVivo)
         {
             vida = 0;
@@ -171,7 +204,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     public void Attacking()
     {
-        if (distancia <= distanciaAtacar)
+        if (distancia <= distanciaAtacar && target != null)
         {
             if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
             {

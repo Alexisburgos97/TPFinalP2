@@ -22,11 +22,18 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
     
     void LateUpdate()
     {
+        
+        if (target == null)
+        {
+            enabled = false; 
+            return;
+        }
+        
         float invertValueX = invertX ? -1 : 1;
         float invertValueY = invertY ? -1 : 1;
         

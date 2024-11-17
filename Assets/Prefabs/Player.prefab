@@ -193,6 +193,7 @@ MonoBehaviour:
   HealthMax: 100
   ImageBarHealth: {fileID: 0}
   TextHealth: {fileID: 0}
+  playerController: {fileID: 264309323716659306}
 --- !u!114 &-8012008544612257691
 MonoBehaviour:
   m_ObjectHideFlags: 0
