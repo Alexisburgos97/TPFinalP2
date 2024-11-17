@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public class DoorController : MonoBehaviour
+{
+    [SerializeField] private Animator doorAnimator;  
+    [SerializeField] private string requiredKeyName;   
+    [SerializeField] private string doorOpeningAnimation;  
+    [SerializeField] private float detectionRange = 2f;
+    
+    [Header("Sounds")] 
+    ISoundController _SoundControl;
+    [SerializeField] private AudioClip DoorSound;
+
+    private void Awake()
+    {
+        _SoundControl = GetComponent<ISoundController>();
+    }
+
+    private void Update()
+    {
+        if (Vector3.Distance(transform.position, PlayerController.PlayerSingleton.transform.position) < detectionRange)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (PlayerController.PlayerSingleton.inventory.HasKey(requiredKeyName))
+                {
+                    OpenDoor(doorOpeningAnimation); 
+                    PlayerController.PlayerSingleton.inventory.UseKey(requiredKeyName);
+                }
+            }
+        }
+    }
+
+    private void OpenDoor(string animationName)
+    {
+        doorAnimator.SetTrigger(animationName);
+        _SoundControl.PlaySound(DoorSound);
+    }
+}
