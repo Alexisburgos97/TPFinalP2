@@ -213,6 +213,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2000882507223101814, guid: e92f17c19271a06488d263766c5c0c20, type: 3}
+      propertyPath: doorAnimator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2604035450897479568, guid: e92f17c19271a06488d263766c5c0c20, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8663598
@@ -3652,6 +3656,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1788887315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732029232338913205, guid: ce0d086a2b061b6409ecbc69427be047, type: 3}
+  m_PrefabInstance: {fileID: 1842259032}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1788887323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788887315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04010ab34d04a1647a2286fbe0f132a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  rotationSpeed: 500
+  jumpForce: 4
+  groundCheckRadius: 0.2
+  groundCheckOffset: {x: 0, y: 0, z: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  gatherInput: {fileID: 1688259343}
 --- !u!1 &1830059115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,7 +3899,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4732029232338913205, guid: ce0d086a2b061b6409ecbc69427be047, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1788887323}
   m_SourcePrefab: {fileID: 100100000, guid: ce0d086a2b061b6409ecbc69427be047, type: 3}
 --- !u!1 &1848464220
 GameObject:

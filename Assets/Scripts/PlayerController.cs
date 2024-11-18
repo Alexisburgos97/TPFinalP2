@@ -17,8 +17,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private GatherInput gatherInput;
 
     [Header("Player Stats")]
-    [SerializeField] private float moveSpeed = 5f, rotationSpeed = 500;
-    [SerializeField] private float jumpForce = 4f;
     [SerializeField] private float attackRange = 1.6f;
     [SerializeField] private float attackDamage = 15f;
     [SerializeField] private float strongAttackRange = 2.1f;
@@ -29,12 +27,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] private Vector3 groundCheckOffset;
     [SerializeField] private LayerMask groundLayer;
 
-    private CameraController cameraController;
-    private CharacterController characterController;
     private Animator animator;
 
     //THIS IS SOLID
-    private PlayerMovement playerMovement;
+    private PlayerMovement PlayerMovement;
     private PlayerAttackHandler playerAttackHandler;
     private PlayerHealth playerHealth;
 
@@ -63,14 +59,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
         _SoundControl = GetComponent<ISoundController>();
-        characterController = GetComponent<CharacterController>();
-        cameraController = Camera.main.GetComponent<CameraController>();
+        PlayerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
-
-        playerMovement = new PlayerMovement(
-            characterController, cameraController, gatherInput, animator,
-            moveSpeed, rotationSpeed, jumpForce, groundCheckRadius, groundCheckOffset, groundLayer
-        );
 
         playerAttackHandler = new PlayerAttackHandler(animator, _SoundControl, attkSound1, attkSound2, attackDamage, 
                                                         attackRange, strongAttackRange, strongAttackDamage, transform);
@@ -81,13 +71,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void Update()
     {
-        playerMovement.HandleMovement();
-        playerMovement.HandleJump();
+        PlayerMovement.HandleMovement();
+        PlayerMovement.HandleJump();
         HandleAttack();
         HandleCure();
     }
 
-    /*RECIBIR DAÑO - 13-11-2024*/
     public void TakesDamage(float damage)
     {
         bool IsDead = playerHealth.TakesDamage(damage);
@@ -112,8 +101,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (playerHealth.get_currentHealth() < 100 && inventory.HasItemOfType(ItemType.Potion))
         {
             playerHealth.Heal(10f);
-
-            /*barHealth.recibeCure(healthToRestore);*/
 
             inventory.UsePotion();
             _SoundControl.PlaySound(BottleSound);
@@ -142,7 +129,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (animator != null)
         {
             animator.SetTrigger("Death"); 
-            DisableMovement();
+            PlayerMovement.DisableMovement();
             
             StartCoroutine(DestroyPlayerAfterDeath());
             
@@ -161,11 +148,5 @@ public class PlayerController : MonoBehaviour, IDamageable
         OnPlayerDeath?.Invoke();
 
         Destroy(gameObject);
-    }
-    
-    public void DisableMovement()
-    {
-        moveSpeed = 0;               
-        jumpForce = 0;              
     }
 }
