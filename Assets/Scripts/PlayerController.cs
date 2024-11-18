@@ -6,11 +6,12 @@ using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
-
     public static PlayerController PlayerSingleton;
 
+    [Header("HUD Elements")]
     public BarHealth barHealth;
 
+    [Header("Inventory")]
     public InventoryObject inventory;
 
     [SerializeField] private GatherInput gatherInput;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     //THIS IS SOLID
     private PlayerMovement playerMovement;
     private PlayerAttackHandler playerAttackHandler;
+    private PlayerHealth playerHealth;
 
     /*THIS IS SONIDO*/
     ISoundController _SoundControl;
@@ -72,6 +74,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         playerAttackHandler = new PlayerAttackHandler(animator, _SoundControl, attkSound1, attkSound2, attackDamage, 
                                                         attackRange, strongAttackRange, strongAttackDamage, transform);
+        playerHealth = new PlayerHealth(100, barHealth);
 
         Application.targetFrameRate = 60;
     }
@@ -87,14 +90,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     /*RECIBIR DAÑO - 13-11-2024*/
     public void TakesDamage(float damage)
     {
-        if (barHealth != null)
-        {
-            barHealth.TakesDamage(damage);
-        }
-        else
-        {
-            Debug.LogWarning("BarHealth no está asignado.");
-        }
+        bool IsDead = playerHealth.TakesDamage(damage);
+
+        if (IsDead){ PlayDeathAnimation(); }
     }
 
     public void HandleAttack()
@@ -111,28 +109,19 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
     public void UsePotion()
     {
-        if (barHealth.Health < 100 && inventory.HasItemOfType(ItemType.Potion))
+        if (playerHealth.get_currentHealth() < 100 && inventory.HasItemOfType(ItemType.Potion))
         {
-            const float potionHealthRestore = 10f;
+            playerHealth.Heal(10f);
 
-            // Calculamos cuánto se puede restaurar sin exceder el límite de salud
-            float healthToRestore = Mathf.Min(potionHealthRestore, 100 - barHealth.Health);
-
-            barHealth.recibeCure(healthToRestore);
+            /*barHealth.recibeCure(healthToRestore);*/
 
             inventory.UsePotion();
             _SoundControl.PlaySound(BottleSound);
-
-            if (!inventory.HasItemOfType(ItemType.Potion))
-            {
-                Debug.Log("Ya no hay más pociones.");
-            }
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-
         var item = other.GetComponent<Item>();
 
         if (item)

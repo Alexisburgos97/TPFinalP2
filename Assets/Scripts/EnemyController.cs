@@ -208,7 +208,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
             {
-                PlayerController.PlayerSingleton.barHealth.TakesDamage(damage);
+                PlayerController.PlayerSingleton.TakesDamage(damage);
             }
             else
             {
