@@ -206,13 +206,13 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         if (distancia <= distanciaAtacar && target != null)
         {
-            if (PlayerController.PlayerSingleton != null && PlayerController.PlayerSingleton.barHealth != null)
+            if (PlayerController.PlayerSingleton != null)
             {
-                PlayerController.PlayerSingleton.barHealth.TakesDamage(damage);
+                PlayerController.PlayerSingleton.TakesDamage(damage);
             }
             else
             {
-                Debug.LogWarning("PlayerController o barHealth no están asignados.");
+                Debug.LogWarning("PlayerControllerv no está asignados.");
             }
         }
     }

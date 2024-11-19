@@ -9,33 +9,25 @@ public class PlayerAttackHandler : MonoBehaviour
 
     //ATTACK SOUNDS
     private ISoundController _SoundControl;
-    private AudioClip attkSound1;
-    private AudioClip attkSound2;
 
-    //ATTACK STATS
-    private float attackDamage = 15f;
-    private float attackRange = 1.6f;
-    private float strongAttackRange = 2.1f;
-    private float strongAttackDamage = 30f;
+    [Header("Player Attack Stats")]
+    [SerializeField] private float attackRange = 1.6f;
+    [SerializeField] private float attackDamage = 15f;
+    [SerializeField] private float strongAttackRange = 2.1f;
+    [SerializeField] private float strongAttackDamage = 30f;
 
-    //PLAYER POSITION
-    private Transform playerTransform;
+    [Header("Sounds")]
+    [SerializeField] private AudioClip attkSound1;
+    [SerializeField] private AudioClip attkSound2;
 
     // Start is called before the first frame update
-    public PlayerAttackHandler(Animator animator, ISoundController soundController, AudioClip attkSound1, AudioClip attkSound2, 
-                               float attackDamage, float attackRange, float strongAttackRange, float strongAttackDamage, Transform playerTransform)
+    private void Awake()
     {
-        this.animator = animator;
-        this._SoundControl = soundController;
-        this.attkSound1 = attkSound1;
-        this.attkSound2 = attkSound2;
-        this.attackRange = attackRange;
-        this.attackDamage = attackDamage;
-        this.strongAttackRange = strongAttackRange;
-        this.strongAttackDamage = strongAttackDamage;
-        this.playerTransform = playerTransform;
-    }
+        animator = GetComponent<Animator>();
+        _SoundControl = GetComponent<ISoundController>();
 
+        Application.targetFrameRate = 60;
+    }
     public void HandleAttack()
     {
 
@@ -59,14 +51,14 @@ public class PlayerAttackHandler : MonoBehaviour
     public void AttemptAttack(float damage, float range)
     {
 
-        Collider[] hitColliders = Physics.OverlapSphere(playerTransform.position, range);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
         foreach (Collider hitCollider in hitColliders)
         {
             EnemyController enemy = hitCollider.GetComponent<EnemyController>();
 
             if (enemy != null && enemy.estaVivo)
             {
-                Debug.DrawRay(playerTransform.position, (enemy.transform.position - playerTransform.position).normalized * attackRange, Color.red);
+                Debug.DrawRay(transform.position, (enemy.transform.position - transform.position).normalized * attackRange, Color.red);
 
                 enemy.TakesDamage(damage);
             }
