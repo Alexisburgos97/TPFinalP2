@@ -42,7 +42,9 @@ public class MenuController : MonoBehaviour
 
     private void PlayButtonOnClicked()
     {
-        SceneManager.LoadScene("Game");
+        _doc.rootVisualElement.style.display = DisplayStyle.None;
+        SceneManager.LoadScene("GameFinal");
+        Destroy(gameObject);
     }
 
     private void ExitButtonOnClicked()
@@ -52,7 +54,9 @@ public class MenuController : MonoBehaviour
 
     private void CreditsButtonOnClicked()
     {
+        _doc.rootVisualElement.style.display = DisplayStyle.None;
         SceneManager.LoadScene("Credits");
+        Destroy(gameObject);
     }
 
     private void OptionsButtonOnClicked()
