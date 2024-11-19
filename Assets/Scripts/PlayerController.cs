@@ -8,24 +8,10 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     public static PlayerController PlayerSingleton;
 
-    [Header("HUD Elements")]
-    public BarHealth barHealth;
-
     [Header("Inventory")]
     public InventoryObject inventory;
 
     [SerializeField] private GatherInput gatherInput;
-
-    [Header("Player Stats")]
-    [SerializeField] private float attackRange = 1.6f;
-    [SerializeField] private float attackDamage = 15f;
-    [SerializeField] private float strongAttackRange = 2.1f;
-    [SerializeField] private float strongAttackDamage = 30f;
-
-    [Header("Ground Check")]
-    [SerializeField] private float groundCheckRadius = 0.2f;
-    [SerializeField] private Vector3 groundCheckOffset;
-    [SerializeField] private LayerMask groundLayer;
 
     private Animator animator;
 
@@ -38,8 +24,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     ISoundController _SoundControl;
 
     [Header("Sounds")]
-    [SerializeField] private AudioClip attkSound1;
-    [SerializeField] private AudioClip attkSound2;
     [SerializeField] private AudioClip BottleSound;
     [SerializeField] private AudioClip ItemSound;
     /*THIS IS SONIDO*/
@@ -61,10 +45,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         _SoundControl = GetComponent<ISoundController>();
         PlayerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
-
-        playerAttackHandler = new PlayerAttackHandler(animator, _SoundControl, attkSound1, attkSound2, attackDamage, 
-                                                        attackRange, strongAttackRange, strongAttackDamage, transform);
-        playerHealth = new PlayerHealth(100, barHealth);
+        playerAttackHandler = GetComponent<PlayerAttackHandler>();
+        playerHealth = GetComponent<PlayerHealth>();
 
         Application.targetFrameRate = 60;
     }
@@ -73,7 +55,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         PlayerMovement.HandleMovement();
         PlayerMovement.HandleJump();
-        HandleAttack();
+        playerAttackHandler.HandleAttack();
         HandleCure();
     }
 
@@ -82,11 +64,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         bool IsDead = playerHealth.TakesDamage(damage);
 
         if (IsDead){ PlayDeathAnimation(); }
-    }
-
-    public void HandleAttack()
-    {
-        playerAttackHandler.HandleAttack();
     }
 
     private void HandleCure()

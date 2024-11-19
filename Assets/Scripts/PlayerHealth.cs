@@ -7,15 +7,10 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth = 100;
     private float maxHealth = 100;
 
-    private BarHealth barHealthHud;
+    [Header("HUD Elements")]
+    [SerializeField]public BarHealth barHealthHud;
 
-    public PlayerHealth(float maxHealth, BarHealth barHealthHud)
-    {
-        this.maxHealth = maxHealth;
-        this.currentHealth = maxHealth;
-        this.barHealthHud = barHealthHud;
-    }
- 
+
     /*GETTERS*/
     public float get_currentHealth() { return currentHealth; }
     public float get_maxHealth() { return maxHealth; }
