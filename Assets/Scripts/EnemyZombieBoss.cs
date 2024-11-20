@@ -8,7 +8,7 @@ public class EnemyZombieBoss : EnemyController
 {
     private NavMeshAgent agente;
     public Animator animaciones;
-    [SerializeField] private float targeTime;
+    private bool OneTimeExec = false;
 
     void Awake()
     {
@@ -48,13 +48,19 @@ public class EnemyZombieBoss : EnemyController
     {
         base.EstadoMuerto();
 
-        //animaciones.SetBool("DeathEnemyBoss", true);
         animaciones.SetTrigger("DeathEnemyBoss");
-        // Desactiva el agente para que no se mueva después de morir
         agente.enabled = false;
         
-        Destroy(gameObject, 3f);
+        if (OneTimeExec == false)
+        {
+            OneTimeExec = true;
+            Invoke(nameof(moriteBicho), 3f);
+            Destroy(gameObject, 3.5f);
+        }
+    }
 
+    private void moriteBicho()
+    {
         GameManager.Instance.LoadLevel("VictoryScreen");
     }
 }
