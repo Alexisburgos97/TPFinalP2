@@ -8,6 +8,7 @@ public class EnemyZombieBoss : EnemyController
 {
     private NavMeshAgent agente;
     public Animator animaciones;
+    [SerializeField] private float targeTime;
 
     void Awake()
     {
