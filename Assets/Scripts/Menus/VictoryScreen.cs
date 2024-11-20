@@ -11,15 +11,9 @@ public class VictoryScreen : MonoBehaviour
     [SerializeField] private Button BtnReplay;
     [SerializeField] private Button BtnQuitDS;
 
-    //SCREENS
-    [SerializeField] private GameObject mainScreen;
-    [SerializeField] private GameObject optionScreen;
-
     //SOUND
     [SerializeField] private AudioClip ClickSound;
-
-    //SLIDER
-    [SerializeField] private Slider MasterVolumeSlider;
+    [SerializeField] private AudioClip VictorySong;
 
     //NOMBRE ESCENA A CARGAR
     [SerializeField] private string FirstScene;
@@ -27,15 +21,13 @@ public class VictoryScreen : MonoBehaviour
     private void Start()
     {
         _SoundControl = GetComponent<ISoundController>();
+        _SoundControl.PlaySound(VictorySong);
     }
 
     private void Awake()
     {
         BtnReplay.onClick.AddListener(Replay);
         BtnQuitDS.onClick.AddListener(QuitGame);
-
-        mainScreen.SetActive(true);
-        optionScreen.SetActive(false);
     }
 
     private void Replay()
