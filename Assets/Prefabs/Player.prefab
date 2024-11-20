@@ -80,7 +80,19 @@ PrefabInstance:
       addedObject: {fileID: 3555697643570994656}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1049673369214607789}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 264309323716659306}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1794423378508713426}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 233158673177337058}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3300158326649295262}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1990885069403302369}
@@ -90,9 +102,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6297385510584866543}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1049673369214607789}
   m_SourcePrefab: {fileID: 100100000, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
 --- !u!1 &4732029232338913205 stripped
 GameObject:
@@ -146,6 +155,29 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.87, z: -0.06}
+--- !u!136 &1049673369214607789
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.8291891
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.85839903, z: 0}
 --- !u!114 &264309323716659306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,22 +193,60 @@ MonoBehaviour:
   barHealth: {fileID: 1990885069403302369}
   inventory: {fileID: 11400000, guid: 01264f516ed5ef2459c34ad0b60a8f26, type: 2}
   gatherInput: {fileID: 0}
+  BottleSound: {fileID: 8300000, guid: df2e6e82f7fff9d4facf5d94c677fca1, type: 3}
+  ItemSound: {fileID: 8300000, guid: 06865cbc465757b4fb9f34feba0a747a, type: 3}
+--- !u!114 &1794423378508713426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04010ab34d04a1647a2286fbe0f132a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 500
-  jumpForce: 8
-  attackRange: 2
-  attackDamage: 20
-  strongAttackRange: 2.1
-  strongAttackDamage: 30
+  jumpForce: 4
   groundCheckRadius: 0.2
-  groundCheckOffset: {x: 0, y: 0.1, z: -0.04}
+  groundCheckOffset: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  gatherInput: {fileID: 0}
+--- !u!114 &233158673177337058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e148a84f58fc2e04fa0373de6fd3f61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1.6
+  attackDamage: 15
+  strongAttackRange: 2.1
+  strongAttackDamage: 30
   attkSound1: {fileID: 8300000, guid: 21dd5d5c845d10d4185e6bb9dec7acd4, type: 3}
   attkSound2: {fileID: 8300000, guid: 49208f779a820a44a99cfc69b04b8888, type: 3}
-  BottleSound: {fileID: 8300000, guid: df2e6e82f7fff9d4facf5d94c677fca1, type: 3}
-  ItemSound: {fileID: 8300000, guid: 06865cbc465757b4fb9f34feba0a747a, type: 3}
+--- !u!114 &3300158326649295262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c597c04a97b3214e8185cd9fdaf6d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barHealthHud: {fileID: 1990885069403302369}
 --- !u!114 &1990885069403302369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,11 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b631145cb82ab141a1f427bfd265f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
-  HealthMax: 100
   ImageBarHealth: {fileID: 0}
   TextHealth: {fileID: 0}
-  playerController: {fileID: 264309323716659306}
 --- !u!114 &-8012008544612257691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,26 +371,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!136 &1049673369214607789
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4732029232338913205}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.8291891
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.85839903, z: 0}
