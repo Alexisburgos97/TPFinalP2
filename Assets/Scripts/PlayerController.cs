@@ -8,17 +8,13 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     public static PlayerController PlayerSingleton;
 
-    [Header("Inventory")]
-    public InventoryObject inventory;
-
-    [SerializeField] private GatherInput gatherInput;
-
     private Animator animator;
 
     //THIS IS SOLID
-    private PlayerMovement PlayerMovement;
+    private PlayerMovement playerMovement;
     private PlayerAttackHandler playerAttackHandler;
     private PlayerHealth playerHealth;
+    private PlayerInventory playerInventory;
 
     /*THIS IS SONIDO*/
     ISoundController _SoundControl;
@@ -43,18 +39,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
         _SoundControl = GetComponent<ISoundController>();
-        PlayerMovement = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
         playerAttackHandler = GetComponent<PlayerAttackHandler>();
         playerHealth = GetComponent<PlayerHealth>();
+        playerInventory = GetComponent<PlayerInventory>();
 
         Application.targetFrameRate = 60;
     }
 
     void Update()
     {
-        PlayerMovement.HandleMovement();
-        PlayerMovement.HandleJump();
+        playerMovement.HandleMovement();
+        playerMovement.HandleJump();
         playerAttackHandler.HandleAttack();
         HandleCure();
     }
@@ -68,21 +65,22 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void HandleCure()
     {
+        bool aux = false;
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UsePotion();
-        }
-    }
-    public void UsePotion()
-    {
-        if (playerHealth.get_currentHealth() < 100 && inventory.HasItemOfType(ItemType.Potion))
-        {
-            playerHealth.Heal(10f);
+            aux = playerInventory.UsePotion();
 
-            inventory.UsePotion();
-            _SoundControl.PlaySound(BottleSound);
+            if (playerHealth.get_currentHealth() < 100 && aux)
+            {
+                playerHealth.Heal(10f);
+                _SoundControl.PlaySound(BottleSound);
+            }
         }
     }
+
+    //USO Y MANEJO DE LAS LLAVES
+    public bool HasKey(string key){ return playerInventory.HasKey(key); }
+    public void UseKey(string key) { playerInventory.UseKey(key); }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -90,7 +88,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (item)
         {
-            inventory.AddItem(item.item, 1);
+            playerInventory.AddItem(item.item, 1);
             _SoundControl.PlaySound(ItemSound);
             Destroy(other.gameObject);
         }
@@ -98,15 +96,15 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnApplicationQuit()
     {
-        inventory.Items.Clear();
+        playerInventory.ClearItems();
     }
     
     public void PlayDeathAnimation()
     {
         if (animator != null)
         {
-            animator.SetTrigger("Death"); 
-            PlayerMovement.DisableMovement();
+            animator.SetTrigger("Death");
+            playerMovement.DisableMovement();
             
             StartCoroutine(DestroyPlayerAfterDeath());
             

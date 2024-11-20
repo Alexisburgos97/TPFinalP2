@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         barHealthHud.UpdateInterfaz(currentHealth, maxHealth);
         Debug.Log($"Player health: {currentHealth}");
-
+        
         return IsDead();
     }
 

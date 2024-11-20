@@ -22,10 +22,10 @@ public class DoorController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (PlayerController.PlayerSingleton.inventory.HasKey(requiredKeyName))
+                if (PlayerController.PlayerSingleton.HasKey(requiredKeyName))
                 {
                     OpenDoor(doorOpeningAnimation); 
-                    PlayerController.PlayerSingleton.inventory.UseKey(requiredKeyName);
+                    PlayerController.PlayerSingleton.UseKey(requiredKeyName);
                 }
             }
         }
