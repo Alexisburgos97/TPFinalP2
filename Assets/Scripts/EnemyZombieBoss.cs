@@ -52,6 +52,8 @@ public class EnemyZombieBoss : EnemyController
         // Desactiva el agente para que no se mueva después de morir
         agente.enabled = false;
         
-        Destroy(gameObject, 3f); 
+        Destroy(gameObject, 3f);
+
+        GameManager.Instance.LoadLevel("VictoryScreen");
     }
 }
