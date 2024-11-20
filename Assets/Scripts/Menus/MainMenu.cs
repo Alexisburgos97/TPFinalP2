@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     //BUTTONS
     [SerializeField] private Button BtnPlay;
     [SerializeField] private Button BtnOptions;
+    [SerializeField] private Button BtnCredits;
     [SerializeField] private Button BtnReturn;
     [SerializeField] private Button BtnQuit;
 
@@ -46,6 +47,7 @@ public class MainMenu : MonoBehaviour
         BtnOptions.onClick.AddListener(GotoOptions);
         BtnReturn.onClick.AddListener(GotoMenu);
         BtnQuit.onClick.AddListener(QuitGame);
+        BtnCredits.onClick.AddListener(Credits);
 
         MasterVolumeSlider.onValueChanged.AddListener(SetVolumen);
 
@@ -77,6 +79,12 @@ public class MainMenu : MonoBehaviour
     {
         soundController.PlaySound(ClickSound);
         Application.Quit();
+    }
+
+    private void Credits()
+    {
+        soundController.PlaySound(ClickSound);
+        GameManager.Instance.LoadLevel("Credits");
     }
 
     private void SetVolumen(float NewVolume)
