@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             
             StartCoroutine(DestroyPlayerAfterDeath());
             
-            // SceneManager.LoadScene("GameOver");
+            GameManager.Instance.LoadLevel("DefeatScreen");
         }
     }
     
