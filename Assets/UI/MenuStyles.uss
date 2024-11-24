@@ -1,0 +1,41 @@
+.menu-button {
+    font-size: 55px;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font-style: bold;
+    -unity-text-align: lower-center;
+    color: rgb(255, 255, 255);
+    align-self: center;
+    justify-content: center;
+    transition-duration: 0.2s;
+    background-image: url("project://database/Assets/Menu/Main%20Menu/BackgroundTitle.png?fileID=2800000&guid=0b7e1f322db93d443951647d488e7642&type=3#BackgroundTitle");
+    text-overflow: clip;
+    height: 20%;
+    top: auto;
+    align-items: center;
+    -unity-background-image-tint-color: rgb(57, 201, 255);
+    -unity-font: url("project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans");
+    padding-right: 70px;
+    padding-left: 70px;
+}
+
+.menu-button:hover {
+    font-size: 55px;
+    color: rgb(255, 0, 0);
+    -unity-text-align: lower-center;
+    rotate: -10deg;
+    transition-duration: 0.3s;
+    -unity-text-outline-color: rgba(219, 255, 0, 0);
+    -unity-text-outline-width: 0;
+    -unity-background-image-tint-color: rgb(57, 201, 255);
+    padding-right: 70px;
+    padding-left: 70px;
+    scale: 1.1 1.1;
+}
+
+.menu-button:active {
+    scale: 0.9 0.9;
+}
