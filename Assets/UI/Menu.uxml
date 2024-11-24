@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=638d2d55fb71b0141ab4847d9794bc4f&amp;type=3#MenuStyles" />
+    <ui:VisualElement name="Logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/logo.png?fileID=2800000&amp;guid=5239b8d5815de994d978feed6574edf3&amp;type=3#logo&quot;); height: 100px; -unity-background-image-tint-color: rgb(255, 167, 167); width: 70%; align-items: center; align-self: center;" />
+    <ui:VisualElement name="Buttons" style="flex-grow: 1; justify-content: space-around; align-self: center; padding-bottom: 0; -unity-background-image-tint-color: rgba(0, 0, 0, 0); background-color: rgba(0, 0, 0, 0.55); opacity: 1; display: flex; overflow: visible; position: relative; -unity-text-align: middle-left; margin-bottom: 3%; padding-right: 50px; padding-left: 50px;">
+        <ui:Button text="Play" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="PlayButton" name="play-button" class="menu-button" />
+        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="OptionsButton" name="OptionsButton" class="menu-button" />
+        <ui:Button text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="credits-button" name="credits-button" class="menu-button" />
+        <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" view-data-key="ExitButton" name="ExitButton" class="menu-button" />
+    </ui:VisualElement>
+</ui:UXML>

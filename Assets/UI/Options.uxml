@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MenuStyles.uss?fileID=7433441132597879392&amp;guid=638d2d55fb71b0141ab4847d9794bc4f&amp;type=3#MenuStyles" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center; justify-content: space-between; align-self: center; padding-top: 10%; padding-bottom: 20%;">
+        <ui:Label tabindex="-1" text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-items: center; align-self: center; font-size: 70px; color: rgb(255, 255, 255); justify-content: space-between;" />
+        <ui:Slider label="Volume" high-value="100" view-data-key="volume-slider" name="volume-slider" style="color: rgb(255, 255, 255); font-size: 30px; width: 500px;" />
+        <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back-Button" view-data-key="back-Button" style="height: 179px; font-size: 70px; background-image: url(&quot;project://database/Assets/Menu/Main%20Menu/BackgroundTitle.png?fileID=2800000&amp;guid=0b7e1f322db93d443951647d488e7642&amp;type=3#BackgroundTitle&quot;); background-color: rgba(188, 188, 188, 0); justify-content: center; -unity-background-scale-mode: stretch-to-fill; align-items: center; align-self: center; -unity-font-style: bold; -unity-text-align: lower-center; width: 341px;" />
+    </ui:VisualElement>
+</ui:UXML>
