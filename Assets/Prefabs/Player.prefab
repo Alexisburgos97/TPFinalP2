@@ -92,6 +92,9 @@ PrefabInstance:
       addedObject: {fileID: 233158673177337058}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 5496534769483792804}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3300158326649295262}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 77b74b9a976c6e84483889859f5183e2, type: 3}
       insertIndex: -1
@@ -190,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd12d4d828b395e4eac926b707bfc554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barHealth: {fileID: 1990885069403302369}
   inventory: {fileID: 11400000, guid: 01264f516ed5ef2459c34ad0b60a8f26, type: 2}
   gatherInput: {fileID: 0}
   BottleSound: {fileID: 8300000, guid: df2e6e82f7fff9d4facf5d94c677fca1, type: 3}
@@ -234,6 +236,19 @@ MonoBehaviour:
   strongAttackDamage: 30
   attkSound1: {fileID: 8300000, guid: 21dd5d5c845d10d4185e6bb9dec7acd4, type: 3}
   attkSound2: {fileID: 8300000, guid: 49208f779a820a44a99cfc69b04b8888, type: 3}
+--- !u!114 &5496534769483792804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732029232338913205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8080e02fb91737d4f8d8432a9de7ff39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 01264f516ed5ef2459c34ad0b60a8f26, type: 2}
 --- !u!114 &3300158326649295262
 MonoBehaviour:
   m_ObjectHideFlags: 0
