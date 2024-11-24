@@ -1,0 +1,9 @@
+Tecla W : Adelante
+Tecla S: Atrás
+Tecla A: Izquierda
+Tecla D: Derecha
+click derecho Ataque 1
+Click izquierdo Ataque 2 
+Tecla E para Abrir las puertas
+Tecla R para Tomar los recursos del inventario
+Cámara: Movimiento del mouse mueve la cámara
